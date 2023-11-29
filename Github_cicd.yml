@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'composer install'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'php artisan test'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                sh 'your deployment script or commands'
+            }
+        }
+    }
+}
